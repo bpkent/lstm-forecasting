@@ -36,6 +36,7 @@ for f in data_folder.iterdir():
     print(f"Sensor: {sensor_name}\t Num rows: {len(df_temp)}")
 
     df_temp.set_index("created_at", inplace=True)
+    df_temp.sort_index(inplace=True)
     df_temp = df_temp.resample("2T").mean().interpolate()
     df[sensor_name] = df_temp[metric]
 
